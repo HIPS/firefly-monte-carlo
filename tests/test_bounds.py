@@ -22,7 +22,7 @@ class BoundsTest(object):
             for L, B, LBgap in zip(all_L, all_B, all_LBgap):
                 self.assertGreater(L - B, 0)
                 self.assertAlmostEqual(L - B, LBgap)
-        
+
     def test_product_of_bounds(self):
         # The (log of the) product of bounds is allowed to have an arbitrary
         # constant added, so we have to look at diffs as th is changed.

@@ -4,7 +4,7 @@ from abc import ABCMeta
 from abc import abstractmethod
 
 class Stepper(object):
-    
+
     __metaclass__ = ABCMeta
 
     @abstractmethod
@@ -80,7 +80,7 @@ class ThetaStepSlice(Stepper):
             if new_logprob > curr_logprob:
                 break # we have our sample
             elif x < 0:
-                L = x 
+                L = x
             elif x > 0:
                 R = x
             else:

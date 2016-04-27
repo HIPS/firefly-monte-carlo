@@ -50,7 +50,7 @@ def main():
 def update_fig(ax, x, y, z, th, t):
     b = np.zeros(N)
     b[z.bright] = 1
-    
+
     bright1s = (   t  *    b ).astype(bool)
     bright0s = ((1-t) *    b ).astype(bool)
     dark1s   = (   t  * (1-b)).astype(bool)
@@ -73,6 +73,6 @@ def update_fig(ax, x, y, z, th, t):
     ax.set_ylim([-lim,lim])
     ax.set_yticks([])
     ax.set_xticks([])
-    
+
 if __name__ == "__main__":
     main()

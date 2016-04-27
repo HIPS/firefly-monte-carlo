@@ -25,7 +25,7 @@ class DerivativesTest(object):
             LB, UB = nd_bounds(lambda th: np.sum(model._logL(th, z.bright)), th)
             AD = np.sum(model._D_logL(th, z.bright), axis=0)
             self.check_ordered(LB, AD, UB)
-        
+
     def test_bound(self):
         for model, th, z in self.random_setup():
             LB, UB = nd_bounds(lambda th:
@@ -45,19 +45,19 @@ class DerivativesTest(object):
             LB, UB = nd_bounds(lambda th: model._logBProduct(th), th)
             AD = model._D_logBProduct(th)
             self.check_ordered(LB, AD, UB)
-        
+
     def test_marg_likelihood(self):
         for model, th, z in self.random_setup():
             LB, UB = nd_bounds(lambda th: model.log_p_marg(th), th)
             AD = model.D_log_p_marg(th)
             self.check_ordered(LB, AD, UB)
-        
+
     def test_pseudo_likelihood(self):
         for model, th, z in self.random_setup():
             LB, UB = nd_bounds(lambda th: np.sum(model.log_pseudo_lik(th, z.bright)), th)
             AD = np.sum(model._D_log_pseudo_lik(th, z.bright), axis=0)
             self.check_ordered(LB, AD, UB)
-        
+
     def test_joint_posterior(self):
         for model, th, z in self.random_setup():
             LB, UB = nd_bounds(lambda th: model.log_p_joint(th, z), th)

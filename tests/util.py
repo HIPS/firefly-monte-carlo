@@ -32,7 +32,7 @@ def nd_bounds(fun, th):
     UB = np.maximum(left_deriv, right_deriv)
     LB = LB - (REL_TOL * np.abs(LB))
     UB = UB + (REL_TOL * np.abs(UB))
-    return LB, UB 
+    return LB, UB
 
 def mcmc_estimator(chain_gen, tol=0.1, N_min=1024, N_max = 10**7):
     # Takes the generator chain_gen, which produces a sequence of vectors
@@ -110,13 +110,13 @@ def compute_expectation(model, fun):
         return np.exp(model.log_p_marg(th)) * fun(th)
 
     return integrate.nquad(integrand, lims)[0]
-    
+
 def compute_moments_by_quadrature(model):
     N = model.N
     L = np.prod(model.th_shape)
     # Partition function for marginal distribution over theta
     Z = compute_expectation(model, lambda th : 1)
-     
+
     th_mean = [compute_expectation(model, lambda th : th[i]) / Z
                for i in range(L)]
     th_sq = [compute_expectation(model, lambda th : th[i] * th[j]) / Z
@@ -130,4 +130,3 @@ def compute_moments_by_quadrature(model):
               for i in range(N)]
 
     return th_mean + th_sq + z_mean
-

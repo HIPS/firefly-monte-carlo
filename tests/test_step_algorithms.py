@@ -15,7 +15,7 @@ class StepAlgorithmsTest(object):
         th_sq_mean = th_var + np.outer(th_mean, th_mean)
         th_var_inv = np.linalg.inv(th_var)
         th_init = np.array([10, 20])
- 
+
         def gauss_prob(th, dummy):
             return -0.5 * (th - th_mean).dot(th_var_inv).dot(th - th_mean)
 

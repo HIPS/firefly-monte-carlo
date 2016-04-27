@@ -4,7 +4,7 @@ class BrightnessVars(object):
     '''
     Class to maintain a record of all N 'brightness' variables, z_i while
     while allowing the following methods to be efficiently performed:
-    
+
     - Switching the state of M data points (O(M) time)
     - Selecting M random bright or dark data point (O(M) time)
     - Producing a list of all B bright data points (O(B) time)
@@ -17,7 +17,7 @@ class BrightnessVars(object):
                data point i in the array arr, so arr[tab[i]] == i .
     For example, if we had 6 data points, of which only 0 and 4 were bright,
     the arrays could be the following:
-    
+
     self.tab = [0, 2,   5, 3, 1, 4]
     self.arr = [0, 4,   1, 3, 5, 2]
     self.B = 2        |  <- bright/dark boundary
@@ -45,15 +45,15 @@ class BrightnessVars(object):
         locs = self.tab[dpts][self.tab[dpts] < self.B]
         self._move_elements(locs, self.B - len(locs), self.B)
         self.B -= len(locs)
-        
+
     def _move_elements(self, locs, low, high):
         # Moves the elemnents in arr[locs] to arr[range(low,high)], relocating
         # any displaced tenants to the newly vacated real estate
         old = locs[np.logical_or(locs < low , locs >= high)]
-        correct = locs[np.logical_and(low <= locs, locs < high)]       
-        mask = np.ones(high-low, dtype=bool) 
+        correct = locs[np.logical_and(low <= locs, locs < high)]
+        mask = np.ones(high-low, dtype=bool)
         mask[correct - low] = False     # mask the locations already correct
-        new = np.arange(low,high)[mask]       
+        new = np.arange(low,high)[mask]
 
         self.arr[new], self.arr[old] = self.arr[old], self.arr[new]
         self.tab[self.arr[new]] = new
@@ -83,12 +83,12 @@ class BrightnessVars(object):
         return np.array(success_idxs, dtype=int)
 
     @property
-    def bright(self): 
+    def bright(self):
         # Returns all the bright datapoints
         return self.arr[:self.B].copy()
 
     @property
-    def dark(self): 
+    def dark(self):
         # Returns all the dark datapoints
         return self.arr[self.B:].copy()
 

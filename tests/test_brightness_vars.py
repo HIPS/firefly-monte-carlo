@@ -18,7 +18,7 @@ class BrightnessVarsTest(unittest.TestCase):
         z.darken(new_dark)
         self.assertEqual(set(z.bright), set(bright) - set(new_dark))
         self.assertEqual(set(z.dark), (set(all_idx) - set(bright)) | set(new_dark))
-        
+
     def test_rand_p_eq_0(self):
         z = ff.BrightnessVars(self.N)
         all_idx = np.arange(self.N)
